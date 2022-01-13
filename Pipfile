@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+fastapi = "*"
+pydrive = "*"
+google-cloud-storage = "*"
+uvicorn = "*"
+python-multipart = "*"
+fastapi-utils = "*"
+google-auth-oauthlib = "*"
+deta = "*"
+aiofiles = "*"
+
+[requires]
+python_version = "3.8"
