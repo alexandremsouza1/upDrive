@@ -31,9 +31,9 @@ def download_file(file_id):
     )
 
 
-def upload_file():
+def upload_file(name,patch):
     message = ""
-    for doc in glob.glob("/var/lib/pgsql/schema_backups/*"):
+    for doc in glob.glob(patch):
         
     #Uploads a file to the Google Drive.
         if doc != 'client_secrets.json':
@@ -44,7 +44,7 @@ def upload_file():
                 # file_drive = drive.CreateFile({'title': file_name })  
                 # file_drive.SetContentFile(source_file_name) 
                 # file_drive.Upload()
-                f = drive.CreateFile({'title': source_file_name})
+                f = drive.CreateFile({'title': name})
                 f.SetContentFile(os.path.join("/var/lib/pgsql/schema_backups/", source_file_name))
                 f.Upload()
 
@@ -59,13 +59,13 @@ def upload_file():
                                         'value': 'anyone',
                                         'role': 'reader'}) #sets permissions so anyone can read
                 if f:
-                    message = message + "," + f['alternateLink']
+                    message = f['alternateLink']
                 else:
                     message = "failed"
                 f = None
     # has to call email or sms  function to notify after process being done
     # move_files()
-    return "The files: " + message + " has been uploaded "
+    return {'patch': message }
 
 
 def get_files():
